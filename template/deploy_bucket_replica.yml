@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Yet Analytics rds-db-init deployment bucket replica. You do not need to run this to use rds-db-init, as it is public.
+
+Parameters:
+  BucketNamePrefix:
+    Description: Name of the S3 bucket to create, region will be added.
+    Type: String
+    Default: yet-rds-db-init-deploy
+
+Resources:
+  HostingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${BucketNamePrefix}-${AWS::Region}"
+      VersioningConfiguration:
+        Status: Enabled
+
+  HostingBucketPublicReadPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref HostingBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "s3:GetObject"
+            Resource:
+              - !Sub "${HostingBucket.Arn}/*"
+            Principal: "*"
