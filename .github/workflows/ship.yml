@@ -2,8 +2,6 @@ name: Ship
 
 on:
   push:
-    branches:
-      - 'main'
     tags:
       - 'v*.*.*' # Enforce Semantic Versioning
 
