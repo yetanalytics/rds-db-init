@@ -9,7 +9,7 @@
   "author": "Yet Analytics, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "pg": "^8.9.0",
+    "pg": "^8.10.0",
     "pg-format": "^1.0.4"
   }
 }
