@@ -36,7 +36,8 @@ exports.handler = async (event, context) => {
         port: input.DBPort,
         database: db,
         user: input.DBMasterUsername,
-        password: await getParam(input.DBMasterPasswordPath, true)
+        password: await getParam(input.DBMasterPasswordPath, true),
+        ssl: { rejectUnauthorized: false }
     });
 
     //needed to use a pg query formtter because you can't use identifiers as vars in prepared statements
