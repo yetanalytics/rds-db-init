@@ -1,17 +1,14 @@
 const { Client } = require('pg')
 var pgformat = require('pg-format');
-const AWS = require("aws-sdk");
-const sm = new AWS.SSM();
-const cfnr = require('./cfn-response.js');
+const { SSMClient, GetParameterCommand } = require("@aws-sdk/client-ssm");const cfnr = require('./cfn-response.js');
 
+const client = new SSMClient({});
 //helper to grab and parse secure strings from ssm
 const getParam = async (path, secure) => {
    try {
-        const param = await sm.getParameter({
-          Name: path,
-          WithDecryption: secure,
-        }).promise();
-        return await param.Parameter.Value;
+        const command = new GetParameterCommand({ Name: path, WithDecryption: secure });
+        const data = await client.send(command);
+        return data.Parameter.Value;
     } catch (e)  {
         console.log(e);
         return null;
