@@ -1,6 +1,7 @@
 const { Client } = require('pg')
 var pgformat = require('pg-format');
-const { SSMClient, GetParameterCommand } = require("@aws-sdk/client-ssm");const cfnr = require('./cfn-response.js');
+const { SSMClient, GetParameterCommand } = require("@aws-sdk/client-ssm");
+const cfnr = require('./cfn-response.js');
 
 const client = new SSMClient({});
 //helper to grab and parse secure strings from ssm
