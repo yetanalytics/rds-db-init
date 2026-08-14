@@ -16,6 +16,7 @@ Yet-hosted lambda code for initializing RDS Postgres databases without leaving C
 | DBHost               | Primary endpoint of RDS DB cluster.                                |
 | DBPort               | Port to access RDS DB on.                                          |
 | DBName               | Name of RDS DB to grant user permissions on.                       |
+| DBSchema             | Schema to grant the user `USAGE` and `CREATE` on. Defaults to `public`. |
 
 ## Supported Regions
 
