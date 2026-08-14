@@ -71,7 +71,7 @@ exports.handler = async (event, context) => {
             console.log("db init transaction failed");
             console.error(err);
             await client.query("ROLLBACK");
-            await cfnr.send(event, context, cfnr.FAILED);
+            return await cfnr.send(event, context, cfnr.FAILED);
         }
         console.log("Finished db init");
         await cfnr.send(event, context, cfnr.SUCCESS, {
