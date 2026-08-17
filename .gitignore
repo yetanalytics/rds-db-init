@@ -2,5 +2,5 @@
 node_modules/
 /.env
 .vscode/
-rds-db-init.zip
+rds-db-init*.zip
 
